@@ -74,15 +74,41 @@ public class Capsula {
         this.estado = estado;
     }
 
-    private double auxCalculoPrecio(double valor) {
+    private double auxCalculoPrecio(Double valor, String origen) throws NullPointerException, NumberFormatException, Exception {
         // imaginamos que hacemos calculo complejo
-        return valor * 1.2;
+        double penalizacion = 1;
+
+        try {
+            if (origen.contains("asia")) penalizacion = 2;
+            else penalizacion = 1;
+        } catch (NumberFormatException ex) {
+            System.out.println("Avisar a devs sobre Format error");
+        } catch (NullPointerException ex) {
+            System.out.println("Avisar a devs sobre Null error");
+        } catch (Exception ex) {
+//            ex.printStackTrace();
+            System.out.println("Avisar a devs sobre error:" + ex.getMessage());
+        } finally {
+            System.out.println("Entrando en finally...");
+        }
+
+        return valor * penalizacion;
+
     }
 
     public double calcularPrecio() {
         if (this.marca == "Bonka") this.precio = 5;
-        else if (this.marca == "Nescafe") this.precio = this.auxCalculoPrecio(6);
-        else this.precio = 2;
+        else if (this.marca == "Nescafe") {
+            try {
+                this.precio = this.auxCalculoPrecio(new Double("hola"), null);
+            } catch (NumberFormatException ex) {
+                System.out.println("Avisar a devs sobre Format error");
+                throw new RuntimeException(ex);
+            } catch (Exception e) {
+                System.out.println("dev: Excepción en precio!!!");
+                throw new RuntimeException(e);
+            }
+        } else this.precio = 2;
 
         return this.precio;
     }
