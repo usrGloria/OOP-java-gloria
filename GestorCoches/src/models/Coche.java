@@ -1,6 +1,6 @@
 package models;
 
-public class Coche {
+public abstract class Coche {
     public static int puertas = 5;
     private String marca;
     private String tipoCoche;
@@ -14,7 +14,7 @@ public class Coche {
         this.velocidad = velocidad;
     }
 
-    public double avanzar(int distancia) {
+    /*public double avanzar(int distancia) {
         if (this.arrancado) {
             double tiempo = (double) distancia / (double) this.velocidad;
             this.posicion += distancia;
@@ -22,15 +22,9 @@ public class Coche {
         } else {
             return 0;
         }
-    }
+    }*/
 
-    public void parar() {
-        this.arrancado = false;
-    }
-
-    public void  arrancar() {
-        this.arrancado = true;
-    }
+    public abstract void ralenti();
 
     @Override
     public String toString() {

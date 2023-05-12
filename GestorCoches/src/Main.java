@@ -1,5 +1,4 @@
-import models.Coche;
-import models.Deportivo;
+import models.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -7,13 +6,9 @@ public class Main {
 
         final int DISTANCIA = 100;
 
-        Coche porsche = new Deportivo("Porsche", "Deportivo", 120, true);
-        Coche renault = new Coche("Renault", "Familiar", 130);
-        Coche seat = new Coche("Seat", "SUV", 100);
-
-        porsche.puertas = 6;
-        renault.puertas = 4;
-        Coche.puertas = 3;
+        ICoche porsche = new Deportivo("Porsche", "Deportivo", 120, true);
+        ICoche renault = new Familiar("Renault", "Familiar", 130, 4);
+        ICoche seat = new SUV("Seat", "SUV", 100, 1);
 
         System.out.println(porsche);
         System.out.println(renault);
@@ -30,7 +25,7 @@ public class Main {
         renault.parar();
         seat.parar();
 
-        Coche masRapido = null;
+        ICoche masRapido = null;
         if (t1 < t2 && t1 < t3) masRapido = porsche;
         else if (t2 < t1 && t2 < t3) masRapido = renault;
         else if (t3 < t1 && t3 < t2) masRapido = seat;
