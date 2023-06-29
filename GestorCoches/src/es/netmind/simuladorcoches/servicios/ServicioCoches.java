@@ -9,6 +9,7 @@ public class ServicioCoches {
         double tiempoMenor = Double.POSITIVE_INFINITY;
         try {
             for (ICoche unC : listaC) {
+                unC.validar();
                 unC.arrancar();
                 double tActual = unC.avanzar(distancia);
                 unC.parar();

@@ -1,5 +1,6 @@
 package es.netmind.simuladorcoches.modelos.coches;
 
+import es.netmind.simuladorcoches.excepciones.CocheException;
 import es.netmind.simuladorcoches.modelos.motores.Motor;
 
 public abstract class Coche {
@@ -70,11 +71,11 @@ public abstract class Coche {
 
     public abstract void ralenti();
 
-    public boolean validar() {
-        if (marca != null && tipoCoche != null && velocidad > 0 && marca.length() > 3 && tipoCoche.length() > 4) {
+    public boolean validar() throws CocheException {
+        if (marca != null && tipoCoche != null && velocidad > 0 && marca.length() > 3 && tipoCoche.length() > 2) {
             return true;
         } else {
-            return false;
+            throw new CocheException("Coche no valido:"+ this.marca);
         }
     }
 }

@@ -1,5 +1,6 @@
 package es.netmind.simuladorcoches;
 
+import es.netmind.simuladorcoches.excepciones.CocheException;
 import es.netmind.simuladorcoches.modelos.coches.Deportivo;
 import es.netmind.simuladorcoches.modelos.coches.Familiar;
 import es.netmind.simuladorcoches.modelos.coches.ICoche;
@@ -28,7 +29,7 @@ public class GestorArrayCoches {
         System.out.println("Cargando ....");
 
         ICoche[] listaCoches = {
-                new Deportivo("Porsche", "Deportivo", 120, false),
+                new Deportivo("", "Deportivo", 120, false),
                 new Familiar("Renault", "Familiar", 130, 5),
                 new SUV("Seat", "SUV", 100, 1)
         };
@@ -43,6 +44,9 @@ public class GestorArrayCoches {
             masRapido = ServicioCoches.encontrarMasRapido(listaCoches, DISTANCIA);
             System.out.println("El coche más rápido es:");
             System.out.println(masRapido);
+        } catch (CocheException e) {
+            System.out.println("Uno de los coches no es válido" + e.getMessage());
+
         } catch (NullPointerException e) {
             System.out.println("La lista de coches está vacia :-( "+e.getMessage());
         } catch (Exception e) {
