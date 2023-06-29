@@ -1,6 +1,7 @@
 package es.netmind.simuladorcoches.modelos.coches;
 
 
+import es.netmind.simuladorcoches.excepciones.CocheException;
 import es.netmind.simuladorcoches.modelos.motores.Motor;
 
 public interface ICoche {
@@ -8,7 +9,7 @@ public interface ICoche {
     public boolean acelarar(int kph);
     public boolean arrancar();
     public boolean parar();
-    public boolean validar();
+    public boolean validar() throws CocheException;
     public void setMotor(Motor motor);
 
 }

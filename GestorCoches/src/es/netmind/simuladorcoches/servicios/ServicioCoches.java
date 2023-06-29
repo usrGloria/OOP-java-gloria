@@ -1,10 +1,11 @@
 package es.netmind.simuladorcoches.servicios;
 
+import es.netmind.simuladorcoches.excepciones.CocheException;
 import es.netmind.simuladorcoches.modelos.coches.ICoche;
 
 public class ServicioCoches {
 
-    public static ICoche encontrarMasRapido(ICoche[] listaC, int distancia) throws NullPointerException, Exception {
+    public static ICoche encontrarMasRapido(ICoche[] listaC, int distancia) throws NullPointerException, CocheException, Exception {
         ICoche masRapido = null;
         double tiempoMenor = Double.POSITIVE_INFINITY;
         try {
@@ -24,7 +25,7 @@ public class ServicioCoches {
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Enviando mensaje admin sobre error: " + e.getMessage());
-            throw new NullPointerException();
+            throw e;
         }
     }
 }
