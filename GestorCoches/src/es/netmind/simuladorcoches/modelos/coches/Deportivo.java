@@ -1,6 +1,6 @@
-package es.netmind.gestorcoches.modelos;
+package es.netmind.simuladorcoches.modelos.coches;
 
-public class Deportivo extends Coche implements ICoche, IMovible {
+public class Deportivo extends Coche implements ICoche, IVolador {
     private boolean turbo;
 
     public Deportivo(String marca, String tipoCoche, int velocidad, boolean turbo) {
@@ -8,14 +8,11 @@ public class Deportivo extends Coche implements ICoche, IMovible {
         this.turbo = turbo;
     }
 
+
     @Override
     public double avanzar(int distancia) {
         if (this.arrancado) {
-            /*
-            int inc = 0;
-            if (this.turbo) inc = 2;
-            else inc = 1;
-            */
+            motor.acelerar();
             int inc = this.turbo ? 2 : 1;
 
             double tiempo = (double) distancia / ((double) this.velocidad * inc);
@@ -27,8 +24,17 @@ public class Deportivo extends Coche implements ICoche, IMovible {
     }
 
     @Override
-    public boolean acelarar(int inc) {
-        return true;
+    public boolean acelarar(int kph) {
+        return false;
     }
 
+    @Override
+    public boolean volar() {
+        return false;
+    }
+
+    @Override
+    public void ralenti() {
+
+    }
 }

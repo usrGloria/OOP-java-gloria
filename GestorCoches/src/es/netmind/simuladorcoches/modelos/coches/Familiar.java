@@ -1,6 +1,6 @@
-package es.netmind.gestorcoches.modelos;
+package es.netmind.simuladorcoches.modelos.coches;
 
-public class Familiar extends Coche implements ICoche, IMovible{
+public class Familiar extends Coche implements ICoche {
 
     private int nAsientos = 5;
 
@@ -12,6 +12,8 @@ public class Familiar extends Coche implements ICoche, IMovible{
     @Override
     public double avanzar(int distancia) {
         if (this.arrancado) {
+            motor.acelerar();
+
             double inc = 1;
             if (nAsientos > 5) inc = 0.5;
             else if (nAsientos < 5) inc = 1.5;
@@ -26,9 +28,13 @@ public class Familiar extends Coche implements ICoche, IMovible{
     }
 
     @Override
-    public boolean acelarar(int inc) {
-        return true;
+    public boolean acelarar(int kph) {
+        return false;
     }
 
 
+    @Override
+    public void ralenti() {
+
+    }
 }

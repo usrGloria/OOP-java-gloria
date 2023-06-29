@@ -1,4 +1,4 @@
-package es.netmind.gestorcoches.modelos;
+package es.netmind.simuladorcoches.modelos.coches;
 
 public class SUV extends Coche implements ICoche{
 
@@ -13,6 +13,8 @@ public class SUV extends Coche implements ICoche{
     @Override
     public double avanzar(int distancia) {
         if (this.arrancado) {
+            motor.acelerar();
+
             double inc = (this.nCambios > 1) ? 0.5 : 1;
 
             double tiempo = (double) distancia / ((double) this.velocidad * inc);
@@ -23,5 +25,14 @@ public class SUV extends Coche implements ICoche{
         }
     }
 
+    @Override
+    public boolean acelarar(int kph) {
+        return false;
+    }
 
+
+    @Override
+    public void ralenti() {
+
+    }
 }

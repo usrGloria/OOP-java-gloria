@@ -1,13 +1,16 @@
-package es.netmind.gestorcoches.modelos;
+package es.netmind.simuladorcoches.modelos.coches;
+
+import es.netmind.simuladorcoches.modelos.motores.Motor;
 
 public abstract class Coche {
 
-    public static int puertas = 5;
-    protected String marca;
-    protected String tipoCoche;
+    public static int nRuedas = 4;
+    private String marca;
+    private String tipoCoche;
     protected int velocidad;
     protected int posicion = 0;
     protected boolean arrancado = false;
+    protected Motor motor;
 
     public Coche(String marca, String tipoCoche, int velocidad) {
         this.marca = marca;
@@ -16,6 +19,7 @@ public abstract class Coche {
     }
 
     public boolean arrancar() {
+        motor.arrancar();
         this.arrancado = true;
         return true;
     }
@@ -25,21 +29,15 @@ public abstract class Coche {
             double tiempo = (double) distancia / (double) this.velocidad;
             this.posicion += distancia;
             return tiempo;
-        } else return 0;
-
+        } else {
+            return Double.POSITIVE_INFINITY;
+        }
     }*/
 
     public boolean parar() {
+        motor.parar();
         this.arrancado = false;
         return true;
-    }
-
-    public int getPosicion() {
-        return posicion;
-    }
-
-    public void setPosicion(int posicion) {
-        this.posicion = posicion;
     }
 
     @Override
@@ -50,7 +48,7 @@ public abstract class Coche {
                 ", velocidad=" + velocidad +
                 ", posicion=" + posicion +
                 ", arrancado=" + arrancado +
-                ", puertas=" + puertas +
+                ", nRuedas=" + nRuedas +
                 '}';
     }
 
@@ -58,14 +56,25 @@ public abstract class Coche {
         return marca;
     }
 
+    public Motor getMotor() {
+        return motor;
+    }
+
+    public void setMotor(Motor motor) {
+        this.motor = motor;
+    }
+
     public void setMarca(String marca) {
         this.marca = marca;
     }
 
-    public boolean validar() {
-        if (!this.getMarca().equals("Porsche")) return  false;
-        else return true;
-    }
+    public abstract void ralenti();
 
-    // abstract void ralenti();
+    public boolean validar() {
+        if (marca != null && tipoCoche != null && velocidad > 0 && marca.length() > 3 && tipoCoche.length() > 4) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
