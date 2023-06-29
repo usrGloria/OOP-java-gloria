@@ -7,7 +7,10 @@ import es.netmind.simuladorcoches.modelos.coches.ICoche;
 import es.netmind.simuladorcoches.modelos.coches.SUV;
 import es.netmind.simuladorcoches.modelos.motores.Combustion;
 import es.netmind.simuladorcoches.modelos.motores.Electrico;
+import es.netmind.simuladorcoches.persistencia.CochesRepositorio;
 import es.netmind.simuladorcoches.servicios.ServicioCoches;
+
+import java.util.List;
 
 public class GestorArrayCoches {
 
@@ -28,16 +31,7 @@ public class GestorArrayCoches {
 
         System.out.println("Cargando ....");
 
-        ICoche[] listaCoches = {
-                new Deportivo("", "Deportivo", 120, false),
-                new Familiar("Renault", "Familiar", 130, 5),
-                new SUV("Seat", "SUV", 100, 1)
-        };
-
-        listaCoches[0].setMotor(new Combustion(1,90));
-        listaCoches[1].setMotor(new Electrico(2, 120));
-        listaCoches[2].setMotor(new Combustion(3, 130));
-
+        List<ICoche> listaCoches = CochesRepositorio.getAll();
 
         ICoche masRapido = null;
         try {
@@ -48,9 +42,9 @@ public class GestorArrayCoches {
             System.out.println("Uno de los coches no es válido" + e.getMessage());
 
         } catch (NullPointerException e) {
-            System.out.println("La lista de coches está vacia :-( "+e.getMessage());
+            System.out.println("La lista de coches está vacia :-( " + e.getMessage());
         } catch (Exception e) {
-            System.out.println("Ooops ... ha habido un error :-("+e.getMessage());
+            System.out.println("Ooops ... ha habido un error :-(" + e.getMessage());
         }
 
 
