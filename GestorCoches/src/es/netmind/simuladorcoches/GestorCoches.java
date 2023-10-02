@@ -4,14 +4,14 @@ import es.netmind.simuladorcoches.modelos.coches.*;
 
 public class GestorCoches {
 
-    static int DISTANCIA = 100;
+    static int DISTANCIA = 300;
 
     public static void main(String[] args) {
         System.out.println("SIMULADOR DE COCHES");
 
         try {
             DISTANCIA = new Integer(args[0]);
-            System.out.println("Distania correcta: " + DISTANCIA);
+            System.out.println("Distancia correcta: " + DISTANCIA);
         } catch (NumberFormatException ex) {
             System.out.println("Distancia incorecta, continuamos con el:" + DISTANCIA);
         } catch (Exception ex) {
